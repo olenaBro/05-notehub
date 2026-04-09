@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createNote } from "../../services/noteService";
@@ -56,9 +57,9 @@ export default function NoteForm({ onClose }: NoteFormProps) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {formik.touched.title && formik.errors.title && (
-          <span className={css.error}>{formik.errors.title}</span>
-        )}
+        <ErrorMessage name="title">
+          {(msg) => <span className={css.error}>{msg}</span>}
+        </ErrorMessage>
       </div>
 
       <div className={css.formGroup}>
@@ -72,9 +73,9 @@ export default function NoteForm({ onClose }: NoteFormProps) {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />
-        {formik.touched.content && formik.errors.content && (
-          <span className={css.error}>{formik.errors.content}</span>
-        )}
+        <ErrorMessage name="content">
+          {(msg) => <span className={css.error}>{msg}</span>}
+        </ErrorMessage>
       </div>
 
       <div className={css.formGroup}>
@@ -93,9 +94,9 @@ export default function NoteForm({ onClose }: NoteFormProps) {
           <option value="Meeting">Meeting</option>
           <option value="Shopping">Shopping</option>
         </select>
-        {formik.touched.tag && formik.errors.tag && (
-          <span className={css.error}>{formik.errors.tag}</span>
-        )}
+        <ErrorMessage name="tag">
+          {(msg) => <span className={css.error}>{msg}</span>}
+        </ErrorMessage>
       </div>
 
       <div className={css.actions}>
